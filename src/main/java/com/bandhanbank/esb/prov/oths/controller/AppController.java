@@ -77,5 +77,8 @@ public class AppController {
                return new ResponseEntity<String>(objectMapper.writeValueAsString(esbResponse), HttpStatus.OK);
 
     }
-
+    @RequestMapping("test")
+    public String getData(){
+        return "Its Success prov";
+    }
 }
