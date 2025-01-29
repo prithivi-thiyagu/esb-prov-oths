@@ -1,0 +1,62 @@
+curl --location --request POST 'http://esbuatgb.bandhanbank.co.in/cons/spring/v1/other/fcalertregisterderegister' \
+
+--header 'x-message-id: 12345' \
+
+--header 'x-session-id: fcalertregisterderegister-42' \
+
+--header 'x-user-id: BNDN_ACS' \
+
+--header 'api_key: 38c7fq9t52q7zwytygz63dvu' \
+
+--header 'Content-Type: application/json' \
+
+--header 'Cookie: 437ad4af6b89e827d090c1d13497e2fa=d5cb71c8030d03eff4f48f82ce8f40ee' \
+
+--data-raw '{
+
+    "Data": {
+
+        "SessionContext": {
+
+            "BankCode": 750,
+
+            "TransactionBranch": 1000,
+
+            "ExternalReferenceNo": "NG_SESSIO122113145",
+
+            "Channel": "API",
+
+            "UserId": "TJON",
+
+            "ServiceCode": "B271",
+
+            "UserNo": 60532
+
+        },
+
+        "CustomerNumber": "303937494",
+
+        "AlertType": "C",
+
+        "FlgAllAlerts": "N",
+
+        "FlgRegisterDeregister": "R",
+
+        "AlertModeType": "B",
+
+        "CustomerLevelRegisteredAlertsDTO": [
+
+            {
+
+                "AlertId": "CASA-OPEN",
+
+                "AlertModeType": "B"
+
+            }
+
+        ]
+
+    }
+
+}'
+ 
