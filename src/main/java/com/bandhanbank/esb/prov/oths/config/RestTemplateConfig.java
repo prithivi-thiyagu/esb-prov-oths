@@ -59,18 +59,8 @@ public class RestTemplateConfig {
     @Bean
     public RestTemplate restTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, CertificateException, MalformedURLException, IOException, FileNotFoundException {
 
-        SSLContext sslContext = new SSLContextBuilder()
-                .loadTrustMaterial(new File(trustStorePath), trustStorePassword.toCharArray()).build();
 
-        SSLConnectionSocketFactory sslConFactory = new SSLConnectionSocketFactory(sslContext,NoopHostnameVerifier.INSTANCE);
-
-        HttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
-                .setSSLSocketFactory(sslConFactory)
-                .build();
-
-        CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(connectionManager).build();
-
-        return new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
+        return new RestTemplate();
 
     }
 }
