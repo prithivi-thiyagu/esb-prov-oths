@@ -8,7 +8,7 @@ RUN ls
  
 # Create a directory for dependencies
 RUN mkdir /demo
- RUN mvn clean
+
 # Copy the custom JAR file into the container
 COPY ./esb-common-util-1.0.0.jar /demo/
  
@@ -31,7 +31,7 @@ RUN ls
 # Copy the project source code into the container (adjust the path if needed)
 COPY ./ /app/
  
- 
+ RUN mvn clean
 RUN ls
 # Build the project (skipping tests for faster builds)
 RUN mvn clean install -DskipTests=true 
