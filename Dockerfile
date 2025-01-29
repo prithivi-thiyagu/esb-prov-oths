@@ -39,7 +39,7 @@ FROM eclipse-temurin:17-jre-alpine
  
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/*-exec.jar app.jar
-RUN jar xf app.jar 
+
 # Debug: Verify the JAR file was copied
 RUN ls 
  
