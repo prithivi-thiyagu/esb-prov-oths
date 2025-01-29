@@ -15,6 +15,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +33,9 @@ import java.util.UUID;
 @Setter
 @Service
 public class FCCAlterRegisterDeRegisterService {
+
+    @Autowired
+    Environment environment;
 
     @Value("${fcalterregisterderegister.url}")
     private String url;
@@ -129,6 +135,28 @@ public class FCCAlterRegisterDeRegisterService {
 
         if (provRequest.getArgs0().getUserNo() == null)
             provRequest.getArgs0().setUserNo(userNo);
+
+        // List of channels allowed to customize "AlertType" field's value
+        String channels = environment.getProperty("alertType.channel.list");
+        List<String> channelList = Arrays.asList(channels.split(","));
+
+        // "AlertType" field validation
+        if (
+                !(  (provRequest.getArgs1().getAlertType() != null) &&
+                    !(provRequest.getArgs1().getAlertType().isEmpty()) &&
+                    (headers.get("x-channel-id") != null) &&
+                    (channelList.contains(headers.get("x-channel-id")))
+                )
+        )
+            provRequest.getArgs1().setAlertType("C");
+
+        // "AlertModeType" field validation
+        if(
+                !(  (provRequest.getArgs1().getAlertModeType() != null) &&
+                    !(provRequest.getArgs1().getAlertModeType().isEmpty())
+                )
+        )
+            provRequest.getArgs1().setAlertModeType("B");
 
     }
 
