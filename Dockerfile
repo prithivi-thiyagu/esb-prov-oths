@@ -33,7 +33,7 @@ COPY ./ /app/
  RUN mvn clean
 RUN ls
 # Build the project (skipping tests for faster builds)
-RUN mvn clean install -DskipTests=true 
+RUN mvn clean package -DskipTests=true 
  
 # Stage 2: Runtime stage
 FROM eclipse-temurin:17-jre-alpine
