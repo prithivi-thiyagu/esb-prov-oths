@@ -11,7 +11,6 @@ RUN mkdir /demo
 
 # Copy the custom JAR file into the container
 COPY ./esb-common-util-1.0.0.jar /demo/
- RUN jar xf /demo/esb-common-util-1.0.0.jar -C /demo/extracted/
 # Debug: Verify the file is in the correct location
 RUN ls -al /demo
  
