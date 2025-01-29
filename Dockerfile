@@ -5,7 +5,7 @@ WORKDIR /app
  
  
 RUN ls
-RUN jar xf esb-common-util-1.0.0.jar -C /app/extracted/
+
 # Create a directory for dependencies
 RUN mkdir /demo
 
