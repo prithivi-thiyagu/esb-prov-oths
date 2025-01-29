@@ -1,4 +1,4 @@
-ecFROM maven:3.8.4-eclipse-temurin-17 AS builder
+FROM maven:3.8.4-eclipse-temurin-17 AS builder
  
 # Set the working directory inside the container
 WORKDIR /app
