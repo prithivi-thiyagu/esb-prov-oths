@@ -8,7 +8,7 @@ RUN ls
  
 # Create a directory for dependencies
 RUN mkdir /demo
- 
+ RUN mvn clean
 # Copy the custom JAR file into the container
 COPY ./esb-common-util-1.0.0.jar /demo/
  
