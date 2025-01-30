@@ -5,13 +5,12 @@ WORKDIR /app
  
  
 RUN ls
- 
+
 # Create a directory for dependencies
 RUN mkdir /demo
 
 # Copy the custom JAR file into the container
 COPY ./esb-common-util-1.0.0.jar /demo/
- 
 # Debug: Verify the file is in the correct location
 RUN ls -al /demo
  
@@ -40,9 +39,9 @@ FROM eclipse-temurin:17-jre-alpine
  
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/*-exec.jar app.jar
- 
+
 # Debug: Verify the JAR file was copied
-RUN ls -al
+RUN ls 
  
 # Set the entry point to run the JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
